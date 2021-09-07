@@ -3,7 +3,7 @@
 // --------------------------------------
 // Exercise 1 - Array Positioning
 
-const letters = ["a","b","c"];
+const letters = ["a", "b", "c"];
 // show b in the console 
 
 console.log(letters[1]);
@@ -36,7 +36,7 @@ const diet = ["tomato", "cucumber", "rocket"];
 
 // You are a programmer. In one line (one statement) insert hamburger, soda and pizza between the elements cucumber and rocket
 
-diet.splice(2,0, "hamburger", "soda", "pizza");
+diet.splice(2, 0, "hamburger", "soda", "pizza");
 console.log(diet);
 
 
@@ -55,7 +55,7 @@ console.log(diet);
 
 // You really like your daily diet from last exercise. Copy it to a new array called dinnerTray so you can give it to a friend.  
 
-const dinnerTray = diet;
+const dinnerTray = [...diet];
 
 console.log(dinnerTray);
 
@@ -63,18 +63,18 @@ console.log(dinnerTray);
 // --------------------------------------
 // Exercise 7 - For loop
 
-const lettersExpanded = ["a","b","c", "d", "e", "f", "g", "h"];
+const lettersExpanded = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
 // log every second char in the array starting from b
 
-for (let index = 0; index < lettersExpanded.length; index++) {
-    console.log(lettersExpanded[index++]);
+for (let index = 1; index < lettersExpanded.length; index += 2) {
+    console.log(lettersExpanded[index]);
 }
 
 // --------------------------------------
 // Exercise 8 - For loop and if statement
 
-const numbers  = [5, 3, 2, 7, 11, 12, 0, -20, 6];
+const numbers = [5, 3, 2, 7, 11, 12, 0, -20, 6];
 
 const discardedNumbers = [];
 
@@ -84,9 +84,9 @@ const discardedNumbers = [];
 for (let index = 0; index < numbers.length; index++) {
     if (numbers[index] < 0 || numbers[index] > 6) {
         console.log(numbers[index]);
-    } else 
-    discardedNumbers.push(numbers[index]);
-    
+    } else {
+        discardedNumbers.push(numbers[index]);
+    }
 }
 
 // --------------------------------------

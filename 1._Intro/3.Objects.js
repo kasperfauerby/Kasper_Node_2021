@@ -16,7 +16,9 @@ console.log(myVal);
 
 // Create an object that has your name and age. 
 
-const person = {"name": "Kasper", "age": "24"}
+const person = {
+    name: "Kasper",
+    age: "24"}
 
 // --------------------------------------
 // Exercise 3 - Add a property 
