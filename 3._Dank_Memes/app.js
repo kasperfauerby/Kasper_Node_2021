@@ -1,15 +1,58 @@
-const app = require("express")();
+
+const express = require("express");
+const app = express();
+
+app.use(express.json());
 
 const dankMemes = [{
+    meme:{ 
     topText: "Top Text",
     botttomText : "Bottom Text"
+}
 }];
 
+
+// get all
 app.get("/dankmemes", (req, res) => {
 
     res.send({memes: dankMemes});
 
 });
+
+
+// post
+app.post("/dankmemes", (req,res) => {
+   
+    console.log(req.body);
+    dankMemes.push(req.body)
+    res.send({});
+})
+
+
+
+// delete
+app.delete("/dankmemes", (req,res) => {
+    const { id } = req.params;
+
+    const index = dankMemes.findIndex(p => p.id == id);
+   
+    dankMemes.splice(index, 1);
+   
+    return res.send();
+
+})
+
+// put
+app.put("/dankmemes", (req,res) => {
+    const { id } = req.params;
+
+    const index = dankMemes.findIndex(p => p.id == id);
+   
+    dankMemes.splice(index, 1);
+   
+    return res.send();
+
+})
 
 
 app.listen(8080, (error) => {
