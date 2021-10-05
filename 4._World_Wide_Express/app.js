@@ -1,8 +1,14 @@
 const express = require("express");
 const app = express();
 
+app.use(express.static("public"));
+
 app.use(express.json());
 
+
+console.log(process.env.PORT);
+
+const PORT = process.env.PORT || 8080;
 
 
 app.get("/", (req, res) => {
@@ -18,10 +24,10 @@ app.get("/cleo", (req, res) => {
 });
 
 
-app.listen(8080, (error) => {
+app.listen(PORT, (error) => {
     if (error) {
        console.log("error is", error); 
     }
     
-    console.log("The server is running on port", 8080);
+    console.log("The server is running on port", PORT);
 });
