@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 app.use(express.static("public"));
 
 app.use(express.json());
 
 
-console.log(process.env.PORT);
+// console.log(process.env.PORT);
 
 const PORT = process.env.PORT || 8080;
 
@@ -50,6 +51,20 @@ app.get("/sausage", (req, res) => {
      res.redirect("/creditor")
  }
 });
+
+
+
+
+app.get("/proxy", async (req, res) => {
+    // fetch("https://www.google.com")
+    // .then(respond => respond.text())
+    // .then(result => res.send(result));
+
+    const response = await fetch("https://www.google.com");
+    const result = await response.text();
+    res.send(result);
+})
+
 
 
 

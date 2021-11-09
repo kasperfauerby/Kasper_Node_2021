@@ -1,0 +1,29 @@
+{
+  "name": "nodefolio",
+  "version": "0.0.1",
+  "description": "A personal portfolio made in Node.js",
+  "main": "app.js",
+  "scripts": {
+    "start-dev": "cross-env NODE_ENV=DEV PORT=8080 node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasperfauerby/Kasper_Node_2021.git"
+  },
+  "keywords": [
+    "portfolio",
+    "Node.js",
+    "HTML"
+  ],
+  "author": "Kasper Fauerby",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kasperfauerby/Kasper_Node_2021/issues"
+  },
+  "homepage": "https://github.com/kasperfauerby/Kasper_Node_2021#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.14"
+  }
+}
