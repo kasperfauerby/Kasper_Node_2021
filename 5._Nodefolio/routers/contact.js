@@ -1,5 +1,9 @@
-const router = require("express").Router();
-
+import express from "express";
+const router = express.Router();
+import nodemailer from "nodemailer"
+const email = "";
+const pwd = "";
+import fs from "fs"
 
 
 router.post("/api/contact", (req, res) => {
@@ -9,6 +13,4 @@ router.post("/api/contact", (req, res) => {
 
 
 
-module.exports = {
-    router
-};
+export default router 

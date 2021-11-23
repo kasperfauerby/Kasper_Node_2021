@@ -1,17 +1,80 @@
-const router = require("express").Router();
+import express from "express";
+const router = express.Router();
 
-const projects = [
-    { name: "Node.js Recap", category: "Node.js", technologies: ["Node.js", "Html", "CSS"] },
-    { name: "Nodefolio", category: "Node.js", technologies: ["Node.js", "Html", "CSS"] },
-    { name: "Adventure XP", category: "Java", technologies: ["Java", "Thymeleaf", "CSS", "MySQL"] }
-];
+import { connection } from "../database/connectSqlite.js";
 
 
-router.get("/api/projects", (req, res) => {
-    res.send({ projects });
+// Hent Projects
+router.get("/projects", async (req, res) => {
+
+    const projects = await connection.all("SELECT * from projects");
+
+    res.send(projects);
 });
 
+// Create
+router.post("/projects", async (req, res) => {
+    const projectToCreate = req.body;
 
-module.exports = {
-    router
-};
+    const connection = await connectSqlite();
+
+    const projects = await connection.run(
+        `
+        INSERT INTO peojects
+        ('title', 'date', 'description', 'github')
+        VALUES
+        (?, ?, ?, ?);
+        `,
+        [projectToCreate.title, projectToCreate.date, projectToCreate.description, projectToCreate.github]
+    ).then(() => {
+        res.sendStatus(200)
+    }).catch(() => {
+        res.sendStatus(400)
+    })
+})
+
+
+
+// Delete
+router.delete("/api/projects/:projectId", async (req, res) => {
+    const id = req.params.projectId
+
+    const connection = await connectSqlite()
+
+    connection.run(`
+            DELETE FROM projects WHERE id = ?
+            `,
+        id
+    ).then(() => {
+        res.sendStatus(200)
+    }).catch(() => {
+        res.sendStatus(404)
+    })
+})
+
+// Update
+router.put("/api/projects/", async (req, res) => {
+    const project = req.body
+
+    const connection = await connectSqlite()
+
+    connection.run(`
+            UPDATE projects 
+            SET 
+            title = ?,
+            date = ?,
+            description = ?,
+            github = ?
+            WHERE id = ?
+            `,
+        [project.title, project.date, project.description, project.github, project.id]
+    ).then(() => {
+        res.sendStatus(200)
+    }).catch(() => {
+        res.sendStatus(404)
+    })
+
+})
+
+
+export default router
